@@ -1,0 +1,526 @@
+{
+  "_id": {
+    "$oid": "6a18b094970fdcb89e78c9cc"
+  },
+ 
+  "matchScore": 95,
+  "technicalQuestions": [
+    {
+      "question": "Can you explain the difference between REST and GraphQL, and when you might choose one over the other?",
+      "intention": "To assess the candidate's understanding of API design principles and their ability to choose the right tool for the job.",
+      "answer": "REST is an architectural style that uses HTTP methods (GET, POST, PUT, DELETE) to interact with resources, typically returning fixed data structures. GraphQL is a query language for APIs that allows clients to request exactly the data they need. I'd choose REST for simpler APIs or when leveraging existing HTTP infrastructure. GraphQL is better for complex applications with varying data requirements, reducing over-fetching and under-fetching of data."
+    },
+    {
+      "question": "Describe your experience with JWT (JSON Web Tokens) for authentication. How do you typically implement it, and what are its security considerations?",
+      "intention": "To evaluate the candidate's practical knowledge of implementing secure authentication mechanisms.",
+      "answer": "I've used JWTs for stateless authentication. The process involves signing a token with a secret key on the server after a user logs in, sending it to the client, and then the client includes this token in subsequent requests. The server verifies the signature using the same secret key. Security considerations include using strong secret keys, HTTPS, avoiding sensitive data in the payload, and setting appropriate expiration times."
+    },
+    {
+      "question": "You mentioned using Gemini AI. Can you elaborate on how you integrated it into your AI-Powered Job Preparation Web Application and what challenges you faced?",
+      "intention": "To understand the candidate's experience with AI/ML API integrations and their problem-solving skills in this domain.",
+      "answer": "In the AI-Powered Job Preparation app, I used the Gemini AI API to generate tailored interview questions based on the parsed resume and job description. I sent the relevant text data to the API and processed the generated questions. Challenges included managing API response times, handling potential rate limits, and ensuring the AI's output was relevant and accurate for interview preparation. I also had to fine-tune the prompts to get the best results."
+    },
+    {
+      "question": "How would you handle file uploads and storage in a Node.js application, considering scalability and security?",
+      "intention": "To gauge the candidate's understanding of file handling, a common requirement in web development, and their approach to scalability and security.",
+      "answer": "For file uploads, I'd typically use libraries like `multer` with Node.js. For storage, I'd avoid storing directly on the server's file system for scalability. Instead, I'd use cloud storage solutions like AWS S3, Google Cloud Storage, or services like ImageKit.io, as I've done in my Social Photo Feed project. This approach offers better scalability, reliability, and allows for features like CDN delivery. Security measures include validating file types and sizes, and ensuring proper access controls on the storage."
+    }
+  ],
+  "behavioralQuestions": [
+    {
+      "question": "Tell me about a challenging technical problem you faced in one of your projects and how you overcame it. This could be related to the Smart India Hackathon or the AI-Powered Job Prep app.",
+      "intention": "To assess problem-solving skills, technical aptitude, and resilience under pressure.",
+      "answer": "During the Smart India Hackathon, a major challenge was integrating real-time satellite imagery data with our AI model for crop yield prediction. The data formats were inconsistent, and processing large volumes of imagery in real-time was computationally intensive. We overcame this by developing a data preprocessing pipeline to standardize image formats and implementing efficient image segmentation techniques. We also optimized our model inference to run faster, ensuring timely advisory for farmers. This involved a lot of research into different image processing libraries and AI model optimization strategies."
+    },
+    {
+      "question": "Describe a situation where you had to work with a team to achieve a common goal. What was your role, and how did you contribute to the team's success?",
+      "intention": "To understand the candidate's teamwork, collaboration, and communication skills.",
+      "answer": "In the Smart India Hackathon, I led a team of 6. My role involved not only contributing to the technical architecture, particularly the frontend with React.js and backend services, but also facilitating communication between team members, ensuring everyone understood their tasks, and resolving conflicts. I focused on breaking down complex problems into manageable parts and assigning them based on individual strengths. We had daily stand-ups to track progress and address blockers, which was crucial for our success in developing the Agri-Tech AI Platform under a tight deadline."
+    },
+    {
+      "question": "How do you stay updated with the latest trends and technologies in full-stack development?",
+      "intention": "To gauge the candidate's proactiveness, passion for learning, and commitment to professional development.",
+      "answer": "I actively follow tech blogs like CSS-Tricks, Smashing Magazine, and Node.js Weekly. I also keep an eye on trending repositories on GitHub and experiment with new libraries and frameworks in personal projects. Participating in hackathons like SIH and exploring AI integrations with tools like Gemini AI are also key ways I learn. I find online courses and documentation for new technologies very helpful, and I enjoy discussing new tech with peers."
+    }
+  ],
+  "skillGaps": [
+    {
+      "skill": "Advanced understanding of CI/CD pipelines and DevOps practices",
+      "severity": "Low"
+    },
+    {
+      "skill": "Experience with cloud deployment strategies beyond basic hosting",
+      "severity": "Low"
+    }
+  ],
+  "preparationPlan": [
+    {
+      "day": 1,
+      "focus": "Core JavaScript & Node.js Concepts",
+      "tasks": [
+        "Review JavaScript event loop, closures, promises, and async/await.",
+        "Deep dive into Node.js streams, buffers, and file system module.",
+        "Practice building simple REST APIs with Node.js and Express, focusing on middleware.",
+        "Read articles on Node.js performance optimization."
+      ]
+    },
+    {
+      "day": 2,
+      "focus": "React.js Advanced Features & State Management",
+      "tasks": [
+        "Understand React hooks (useEffect, useContext, useReducer) in depth.",
+        "Explore state management libraries like Redux Toolkit or Zustand.",
+        "Practice building complex UI components and handling forms efficiently.",
+        "Review React best practices for performance and maintainability."
+      ]
+    },
+    {
+      "day": 3,
+      "focus": "Database Interaction & Authentication",
+      "tasks": [
+        "Deepen MongoDB query optimization techniques.",
+        "Practice implementing secure JWT authentication flow from scratch.",
+        "Review Mongoose schema design and validation.",
+        "Explore database indexing strategies for performance."
+      ]
+    },
+    {
+      "day": 4,
+      "focus": "API Integration & Third-Party Services",
+      "tasks": [
+        "Review common patterns for integrating third-party APIs (error handling, retries).",
+        "Practice integrating a new external API (e.g., a payment gateway or a different AI service).",
+        "Understand concepts of rate limiting and API key management.",
+        "Review documentation for ImageKit.io or similar CDN services."
+      ]
+    },
+    {
+      "day": 5,
+      "focus": "System Design & Scalability",
+      "tasks": [
+        "Read about microservices architecture vs. monolithic architecture.",
+        "Study concepts of load balancing and horizontal scaling.",
+        "Review common system design interview questions related to web applications.",
+        "Think about how to scale the projects mentioned in the resume."
+      ]
+    },
+    {
+      "day": 6,
+      "focus": "Code Review & Refactoring",
+      "tasks": [
+        "Review own project codebases (e.g., Spotify Clone, Social Photo Feed) for potential improvements.",
+        "Refactor parts of the code to improve readability, efficiency, or adherence to best practices.",
+        "Practice writing unit and integration tests for Node.js and React components.",
+        "Understand the importance of code reviews in a team setting."
+      ]
+    },
+    {
+      "day": 7,
+      "focus": "Mock Interview & Behavioral Prep",
+      "tasks": [
+        "Conduct a mock technical interview focusing on Full Stack concepts.",
+        "Practice answering behavioral questions using the STAR method (Situation, Task, Action, Result).",
+        "Prepare specific examples from projects related to teamwork, problem-solving, and learning.",
+        "Review the job description again and tailor answers to its requirements."
+      ]
+    }
+  ],
+  "user": {
+    "$oid": "69fe45d63303e8f4016d717b"
+  },
+  "createdAt": {
+    "$date": "2026-05-28T21:16:04.619Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-28T21:16:04.619Z"
+  },
+  "__v": 0
+}
+
+
+
+import React, { useState, useEffect } from 'react'
+import '../style/interview.scss'
+import { useInterview } from '../hooks/useInterview.js'
+import { useNavigate, useParams } from 'react-router'
+
+// ── Icons ──────────────────────────────────────────────────────────────────────
+const IconCode = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
+  </svg>
+)
+const IconChat = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+  </svg>
+)
+const IconMap = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="3 11 22 2 13 21 11 13 3 11" />
+  </svg>
+)
+const IconOverview = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" />
+    <rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
+  </svg>
+)
+const IconArrowLeft = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
+  </svg>
+)
+const IconDownload = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
+  </svg>
+)
+const IconChevron = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="6 9 12 15 18 9" />
+  </svg>
+)
+
+const NAV_ITEMS = [
+  { id: 'overview',   label: 'Overview',    icon: <IconOverview /> },
+  { id: 'technical',  label: 'Technical',   icon: <IconCode /> },
+  { id: 'behavioral', label: 'Behavioral',  icon: <IconChat /> },
+  { id: 'roadmap',    label: 'Road Map',    icon: <IconMap /> },
+]
+
+// ── Circular Score Ring ────────────────────────────────────────────────────────
+const ScoreRing = ({ score }) => {
+  const r = 52
+  const circ = 2 * Math.PI * r
+  const pct  = Math.max(0, Math.min(100, score ?? 0))
+  const dash = (pct / 100) * circ
+  const color = pct >= 80 ? '#3fb950' : pct >= 60 ? '#f5a623' : '#ff4d4d'
+  return (
+    <div className="score-ring-wrap">
+      <svg className="score-ring-svg" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r={r} fill="none" stroke="#2a3348" strokeWidth="8" />
+        <circle
+          cx="60" cy="60" r={r} fill="none"
+          stroke={color} strokeWidth="8"
+          strokeLinecap="round"
+          strokeDasharray={`${dash} ${circ}`}
+          strokeDashoffset="0"
+          transform="rotate(-90 60 60)"
+          style={{ transition: 'stroke-dasharray 1.2s cubic-bezier(.4,0,.2,1)' }}
+        />
+      </svg>
+      <div className="score-ring-inner">
+        <span className="score-ring-value" style={{ color }}>{pct}</span>
+        <span className="score-ring-label">%</span>
+      </div>
+    </div>
+  )
+}
+
+// ── Question Card ─────────────────────────────────────────────────────────────
+const QuestionCard = ({ item, index }) => {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className={`q-card ${open ? 'q-card--open' : ''}`}>
+      <button className="q-card__header" onClick={() => setOpen(o => !o)}>
+        <span className="q-card__index">Q{index + 1}</span>
+        <p className="q-card__question">{item.question}</p>
+        <span className={`q-card__chevron ${open ? 'q-card__chevron--open' : ''}`}>
+          <IconChevron />
+        </span>
+      </button>
+      <div className="q-card__body-wrap" style={{ display: open ? 'block' : 'none' }}>
+        <div className="q-card__body">
+          {item.intention && (
+            <div className="q-card__section">
+              <span className="q-tag q-tag--intention">💡 Intention</span>
+              <p>{item.intention}</p>
+            </div>
+          )}
+          {item.answer && (
+            <div className="q-card__section">
+              <span className="q-tag q-tag--answer">✅ Model Answer</span>
+              <p>{item.answer}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ── Roadmap Day ───────────────────────────────────────────────────────────────
+const RoadmapDay = ({ day, total }) => (
+  <div className="rm-day">
+    <div className="rm-day__dot" />
+    <div className="rm-day__card">
+      <div className="rm-day__header">
+        <span className="rm-day__badge">Day {day.day}</span>
+        <span className="rm-day__of">of {total}</span>
+        <h3 className="rm-day__focus">{day.focus}</h3>
+      </div>
+      <ul className="rm-day__tasks">
+        {(day.tasks || []).map((task, i) => (
+          <li key={i}>
+            <span className="rm-day__bullet" />
+            {task}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+)
+
+// ── Skill Gap Badge ───────────────────────────────────────────────────────────
+const SkillBadge = ({ skill, severity }) => (
+  <span className={`skill-tag skill-tag--${severity ?? 'medium'}`}>
+    {skill}
+  </span>
+)
+
+// ── Overview Panel ────────────────────────────────────────────────────────────
+const Overview = ({ report }) => {
+  const totalQ = (report.technicalQuestions?.length ?? 0) + (report.behavioralQuestions?.length ?? 0)
+  return (
+    <div className="overview">
+      <div className="overview__stats">
+        <div className="stat-card">
+          <span className="stat-card__value">{report.technicalQuestions?.length ?? 0}</span>
+          <span className="stat-card__label">Technical Q&amp;A</span>
+        </div>
+        <div className="stat-card">
+          <span className="stat-card__value">{report.behavioralQuestions?.length ?? 0}</span>
+          <span className="stat-card__label">Behavioral Q&amp;A</span>
+        </div>
+        <div className="stat-card">
+          <span className="stat-card__value">{report.preparationPlan?.length ?? 0}</span>
+          <span className="stat-card__label">Day Plan</span>
+        </div>
+        <div className="stat-card">
+          <span className="stat-card__value">{report.skillGaps?.length ?? 0}</span>
+          <span className="stat-card__label">Skill Gaps</span>
+        </div>
+      </div>
+
+      <div className="overview__section-title">All Skill Gaps</div>
+      <div className="skill-gaps__list">
+        {(report.skillGaps ?? []).map((gap, i) => (
+          <SkillBadge key={i} skill={gap.skill} severity={gap.severity} />
+        ))}
+        {(!report.skillGaps || report.skillGaps.length === 0) && (
+          <p className="empty-note">No skill gaps identified — great match!</p>
+        )}
+      </div>
+
+      <div className="overview__section-title" style={{ marginTop: '2rem' }}>Quick Tips</div>
+      <ul className="overview__tips">
+        <li>Review all technical questions and practice answers out loud.</li>
+        <li>Use the STAR method for behavioral questions.</li>
+        <li>Follow the {report.preparationPlan?.length ?? 0}-day roadmap to close skill gaps before your interview.</li>
+      </ul>
+    </div>
+  )
+}
+
+// ── Loading Screen ────────────────────────────────────────────────────────────
+const LoadingScreen = () => (
+  <div className="iv-loading">
+    <div className="iv-spinner" />
+    <p>Loading your interview plan…</p>
+  </div>
+)
+
+// ── Main Component ────────────────────────────────────────────────────────────
+const Interview = () => {
+  const [activeNav, setActiveNav] = useState('overview')
+  
+  const { report, loading, error, getResumePdf, getReportById } = useInterview()
+  const { interviewId } = useParams()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (interviewId) {
+      getReportById(interviewId)
+    }
+  }, [interviewId])
+
+  if (loading || (!report && !error)) return <LoadingScreen />
+
+  if (error) {
+    return (
+      <div className="iv-error">
+        <h2>Something went wrong</h2>
+        <p>{error?.message || 'Unable to load your report.'}</p>
+        <button className="button primary-button" onClick={() => navigate('/')}>← Back to Dashboard</button>
+      </div>
+    )
+  }
+
+  if (!report) {
+    return (
+      <div className="iv-error">
+        <h2>Report not found</h2>
+        <p>This report may have been deleted or does not exist.</p>
+        <button className="button primary-button" onClick={() => navigate('/')}>← Back to Dashboard</button>
+      </div>
+    )
+  }
+
+  const scoreColor = report.matchScore >= 80 ? '#3fb950' : report.matchScore >= 60 ? '#f5a623' : '#ff4d4d'
+  const scoreLabel = report.matchScore >= 80 ? 'Strong match' : report.matchScore >= 60 ? 'Good match' : 'Needs improvement'
+
+  return (
+    <div className="iv-page">
+
+      {/* ── Top Bar ── */}
+      <header className="iv-topbar">
+        <button className="iv-back-btn" onClick={() => navigate('/')}>
+          <IconArrowLeft /> Dashboard
+        </button>
+        <div className="iv-topbar__center">
+          <span className="iv-topbar__badge">Interview Report</span>
+        </div>
+        {/* <button className="iv-download-btn" onClick={() => getResumePdf(interviewId)}>
+          <IconDownload /> Download Resume
+        </button> */}
+      </header>
+
+      <div className="iv-body">
+
+        {/* ── Left Nav ── */}
+        <nav className="iv-nav">
+          <p className="iv-nav__label">Sections</p>
+          {NAV_ITEMS.map(item => (
+            <button
+              key={item.id}
+              className={`iv-nav__item ${activeNav === item.id ? 'iv-nav__item--active' : ''}`}
+              onClick={() => setActiveNav(item.id)}
+            >
+              <span className="iv-nav__icon">{item.icon}</span>
+              {item.label}
+            </button>
+          ))}
+        </nav>
+
+        <div className="iv-divider" />
+
+        {/* ── Main Content ── */}
+        <main className="iv-content">
+
+          {activeNav === 'overview' && (
+            <section>
+              <div className="content-header">
+                <h2>Overview</h2>
+                <span className="content-header__badge">Summary</span>
+              </div>
+              <Overview report={report} />
+            </section>
+          )}
+
+          {activeNav === 'technical' && (
+            <section>
+              <div className="content-header">
+                <h2>Technical Questions</h2>
+                <span className="content-header__badge">{report.technicalQuestions?.length ?? 0} questions</span>
+              </div>
+              <div className="q-list">
+                {(report.technicalQuestions ?? []).map((q, i) => (
+                  <QuestionCard key={i} item={q} index={i} />
+                ))}
+                {(!report.technicalQuestions || report.technicalQuestions.length === 0) && (
+                  <p className="empty-note">No technical questions found in this report.</p>
+                )}
+              </div>
+            </section>
+          )}
+
+          {activeNav === 'behavioral' && (
+            <section>
+              <div className="content-header">
+                <h2>Behavioral Questions</h2>
+                <span className="content-header__badge">{report.behavioralQuestions?.length ?? 0} questions</span>
+              </div>
+              <div className="q-list">
+                {(report.behavioralQuestions ?? []).map((q, i) => (
+                  <QuestionCard key={i} item={q} index={i} />
+                ))}
+                {(!report.behavioralQuestions || report.behavioralQuestions.length === 0) && (
+                  <p className="empty-note">No behavioral questions found in this report.</p>
+                )}
+              </div>
+            </section>
+          )}
+
+          {activeNav === 'roadmap' && (
+            <section>
+              <div className="content-header">
+                <h2>Preparation Road Map</h2>
+                <span className="content-header__badge">{report.preparationPlan?.length ?? 0}-day plan</span>
+              </div>
+              <div className="rm-list">
+                {(report.preparationPlan ?? []).map(day => (
+                  <RoadmapDay key={day.day} day={day} total={report.preparationPlan.length} />
+                ))}
+                {(!report.preparationPlan || report.preparationPlan.length === 0) && (
+                  <p className="empty-note">No roadmap found in this report.</p>
+                )}
+              </div>
+            </section>
+          )}
+
+        </main>
+
+        <div className="iv-divider" />
+
+        {/* ── Right Sidebar ── */}
+        <aside className="iv-sidebar">
+
+          <div className="sidebar-block">
+            <p className="sidebar-block__label">Match Score</p>
+            <ScoreRing score={report.matchScore} />
+            <p className="sidebar-block__sub" style={{ color: scoreColor }}>{scoreLabel}</p>
+          </div>
+
+          <div className="sidebar-sep" />
+
+          <div className="sidebar-block">
+            <p className="sidebar-block__label">Skill Gaps</p>
+            <div className="skill-gaps__list">
+              {(report.skillGaps ?? []).map((gap, i) => (
+                <SkillBadge key={i} skill={gap.skill} severity={gap.severity} />
+              ))}
+              {(!report.skillGaps || report.skillGaps.length === 0) && (
+                <span className="empty-note" style={{ fontSize: '0.8rem' }}>No gaps — great!</span>
+              )}
+            </div>
+          </div>
+
+          <div className="sidebar-sep" />
+
+          <div className="sidebar-block">
+            <p className="sidebar-block__label">Progress</p>
+            <div className="progress-rows">
+              <div className="progress-row">
+                <span>Technical</span>
+                <span>{report.technicalQuestions?.length ?? 0} Q</span>
+              </div>
+              <div className="progress-row">
+                <span>Behavioral</span>
+                <span>{report.behavioralQuestions?.length ?? 0} Q</span>
+              </div>
+              <div className="progress-row">
+                <span>Plan Days</span>
+                <span>{report.preparationPlan?.length ?? 0} d</span>
+              </div>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  )
+}
+
+export default Interview 

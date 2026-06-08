@@ -1,0 +1,1095 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap");
+
+// ── Tokens ─────────────────────────────────────────────────
+$purple:       #6d5ce7;
+$purple-light: #a78bfa;
+$pink:         #a855f7;
+$bg:           #080810;
+$panel:        rgba(255, 255, 255, 0.028);
+$border:       rgba(255, 255, 255, 0.07);
+$border-hover: rgba(109, 92, 231, 0.32);
+$text:         rgba(255, 255, 255, 0.88);
+$text-muted:   rgba(255, 255, 255, 0.42);
+$text-hint:    rgba(255, 255, 255, 0.18);
+$radius:       16px;
+$radius-sm:    10px;
+
+// ── Reset ──────────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+// ── Page base ──────────────────────────────────────────────
+html, body {
+  height: 100%;
+  background: $bg;
+  font-family: "DM Sans", sans-serif;
+  color: $text;
+  overflow-x: hidden;
+}
+
+// Ambient orbs
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  width: 560px; height: 560px;
+  background: radial-gradient(circle, rgba(109, 92, 231, 0.14), transparent 65%);
+  top: -160px; left: -140px;
+  animation: drift 9s ease-in-out infinite;
+}
+
+body::after {
+  width: 460px; height: 460px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.1), transparent 65%);
+  bottom: -100px; right: -110px;
+  animation: drift 11s ease-in-out infinite reverse;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-24px) scale(1.04); }
+}
+
+// ── Page wrapper ───────────────────────────────────────────
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+
+  // Dot grid
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+// ── Hero ───────────────────────────────────────────────────
+.hero {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 28px 24px 20px;
+  position: relative;
+  z-index: 1;
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: rgba(167, 139, 250, 0.7);
+    border: 1px solid rgba(109, 92, 231, 0.24);
+    border-radius: 100px;
+    padding: 5px 16px;
+    margin-bottom: 14px;
+    background: rgba(109, 92, 231, 0.07);
+
+    .eyebrow-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: $purple-light;
+      animation: pulse-dot 2.4s ease-in-out infinite;
+    }
+  }
+
+  h1 {
+    font-family: "Syne", sans-serif;
+    font-size: clamp(20px, 2.4vw, 32px);
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.93);
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    margin-bottom: 10px;
+
+    span {
+      background: linear-gradient(135deg, $purple-light 0%, $pink 55%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+
+  p {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.34);
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.65;
+    letter-spacing: 0.1px;
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.4); }
+}
+
+// ── Home grid ──────────────────────────────────────────────
+.home {
+  min-height: 420px;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 24px 24px;
+
+  // ── Panel base (shared) ────────────────────────────────
+  .left,
+  .right {
+    min-height: 0;
+    background: $panel;
+    border: 1px solid $border;
+    border-radius: $radius;
+    backdrop-filter: blur(12px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    // Top glow line
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 8%; width: 84%; height: 1px;
+      border-radius: 100px;
+      pointer-events: none;
+    }
+
+    &:hover {
+      border-color: $border-hover;
+      box-shadow: 0 0 60px rgba(109, 92, 231, 0.08);
+    }
+  }
+
+  .left::before  { background: linear-gradient(90deg, transparent, rgba(109, 92, 231, 0.55), transparent); }
+  .right::before { background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.55), transparent); }
+
+  // ── Section label ────────────────────────────────────────
+  // Usage in JSX:
+  // <div className="section-label">
+  //   <span className="icon">📋</span>
+  //   Job Description
+  //   <span className="sep"></span>
+  // </div>
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    color: $text-muted;
+    flex-shrink: 0;
+
+    .icon {
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    // Extends to fill remaining row width
+    .sep {
+      flex: 1;
+      height: 1px;
+      background: $border;
+      margin-left: 4px;
+    }
+  }
+
+  // ── Shared textarea ──────────────────────────────────────
+  textarea {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: $radius-sm;
+    padding: 14px 16px;
+    color: $text;
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.78;
+    letter-spacing: 0.1px;
+    resize: none;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+    &:focus {
+      border-color: rgba(109, 92, 231, 0.55);
+      box-shadow:
+        0 0 0 3px rgba(109, 92, 231, 0.1),
+        inset 0 0 40px rgba(109, 92, 231, 0.03);
+    }
+
+    &::placeholder {
+      color: $text-hint;
+      font-style: italic;
+      font-size: 12.5px;
+    }
+  }
+
+  // ── Left panel ─────────────────────────────────────────
+  .left {
+    // textarea fills remaining height automatically via flex: 1
+  }
+
+  // ── Right panel ────────────────────────────────────────
+  .right {
+
+    // Generic input group
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      // Last group (self description) stretches to fill space
+      &:last-of-type {
+        flex: 1;
+        min-height: 0;
+
+        textarea {
+          min-height: 80px;
+        }
+      }
+    }
+
+    // ── File drop zone ─────────────────────────────────
+    .file-drop {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(109, 92, 231, 0.04);
+      border: 1.5px dashed rgba(109, 92, 231, 0.28);
+      border-radius: $radius-sm;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.25s ease;
+
+      &:hover {
+        border-color: rgba(109, 92, 231, 0.6);
+        background: rgba(109, 92, 231, 0.09);
+        transform: translateY(-1px);
+      }
+
+      // Hidden native input covers the whole zone
+      input[type="file"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        font-size: 0;
+      }
+
+      .file-btn {
+        background: linear-gradient(135deg, $purple, $pink);
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-family: "DM Sans", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 7px 14px;
+        letter-spacing: 0.4px;
+        pointer-events: none;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .file-name {
+        font-size: 12.5px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.38);
+        font-style: italic;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &.chosen {
+          color: rgba(167, 139, 250, 0.9);
+          font-style: normal;
+          font-weight: 500;
+        }
+      }
+    }
+
+    // ── Tip line (between upload & self-description) ────
+    .tip-line {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.28);
+      letter-spacing: 0.1px;
+
+      .tip-badge {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: rgba(109, 92, 231, 0.8);
+        border: 1px solid rgba(109, 92, 231, 0.28);
+        border-radius: 100px;
+        padding: 2px 9px;
+        white-space: nowrap;
+      }
+    }
+
+    // ── Generate button ─────────────────────────────────
+    .button.primary-button {
+      flex-shrink: 0;
+      width: 100%;
+      padding: 14px 24px;
+      border: none;
+      border-radius: $radius-sm;
+      background: linear-gradient(135deg, $purple 0%, $pink 100%);
+      color: #fff;
+      font-family: "DM Sans", sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: opacity 0.2s ease, transform 0.15s ease, box-shadow 0.25s ease;
+
+      // Shimmer sweep
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0; left: -100%;
+        width: 55%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+        animation: shimmer 3s infinite;
+        pointer-events: none;
+      }
+
+      // Top highlight line
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+        pointer-events: none;
+      }
+
+      &:hover {
+        opacity: 0.92;
+        transform: translateY(-2px);
+        box-shadow:
+          0 14px 44px rgba(109, 92, 231, 0.45),
+          0 0 0 1px rgba(109, 92, 231, 0.3);
+      }
+
+      &:active {
+        transform: translateY(0);
+        box-shadow: none;
+        opacity: 1;
+      }
+
+      &:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+@keyframes shimmer {
+  0%        { left: -100%; }
+  50%, 100% { left: 150%; }
+}
+
+// ── Responsive ─────────────────────────────────────────────
+@media (max-width: 900px) {
+  .page-wrapper {
+    height: auto;
+    overflow: auto;
+  }
+
+  .hero {
+    padding: 20px 16px 14px;
+  }
+
+  .home {
+    grid-template-columns: 1fr;
+    padding: 0 16px 28px;
+
+    .left,
+    .right {
+      min-height: auto;
+    }
+
+    .left textarea {
+      min-height: 200px;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap");
+
+// ── Tokens ─────────────────────────────────────────────────
+$purple:       #6d5ce7;
+$purple-light: #a78bfa;
+$pink:         #a855f7;
+$bg:           #080810;
+$border:       rgba(255, 255, 255, 0.07);
+$border-hover: rgba(109, 92, 231, 0.32);
+$text:         rgba(255, 255, 255, 0.88);
+$text-muted:   rgba(255, 255, 255, 0.38);
+$text-hint:    rgba(255, 255, 255, 0.18);
+
+// ── Reset ──────────────────────────────────────────────────
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+// ── Page base ──────────────────────────────────────────────
+html, body {
+  height: 100%;
+  background: $bg;
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(109, 92, 231, 0.13), transparent 65%);
+  top: -180px; left: -150px;
+  animation: drift 9s ease-in-out infinite;
+}
+
+body::after {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.09), transparent 65%);
+  bottom: -100px; right: -120px;
+  animation: drift 11s ease-in-out infinite reverse;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-28px) scale(1.05); }
+}
+
+// ── Page wrapper ───────────────────────────────────────────
+// Wrap .hero + .home in a div.page-wrapper in your JSX
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+// ── Hero ───────────────────────────────────────────────────
+.hero {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 20px 20px 16px;
+  position: relative;
+  z-index: 1;
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(167, 139, 250, 0.65);
+    border: 1px solid rgba(109, 92, 231, 0.22);
+    border-radius: 100px;
+    padding: 4px 14px;
+    margin-bottom: 10px;
+    background: rgba(109, 92, 231, 0.07);
+
+    .eyebrow-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: $purple-light;
+      animation: pulse-dot 2.4s ease-in-out infinite;
+    }
+  }
+
+  h1 {
+    font-family: "Syne", sans-serif;
+    font-size: clamp(18px, 2vw, 28px);
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.15;
+    letter-spacing: -0.6px;
+    margin-bottom: 8px;
+
+    span {
+      background: linear-gradient(135deg, $purple-light 0%, $pink 55%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+
+  p {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.32);
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.35); }
+}
+
+// ── Home grid ──────────────────────────────────────────────
+.home {
+  flex: 1;               // takes all remaining vertical space
+  min-height: 0;         // critical: allows flex child to shrink below content size
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 24px 24px;
+  background: $bg;
+
+  // ── Left panel ─────────────────────────────────────────
+  .left {
+    min-height: 0;
+    background: rgba(255, 255, 255, 0.028);
+    border: 1px solid $border;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    backdrop-filter: blur(10px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 10%; width: 80%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(109, 92, 231, 0.5), transparent);
+      border-radius: 100px;
+    }
+
+    &::after {
+      content: "📋  JOB DESCRIPTION";
+      position: absolute;
+      top: 20px; left: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: $text-muted;
+      pointer-events: none;
+    }
+
+    &:hover {
+      border-color: $border-hover;
+      box-shadow: 0 0 50px rgba(109, 92, 231, 0.07);
+    }
+
+    textarea#jobDescription {
+      flex: 1;
+      min-height: 0;       // allows textarea to fill remaining panel space
+      width: 100%;
+      margin-top: 26px;
+      background: rgba(0, 0, 0, 0.38);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+      padding: 14px;
+      color: $text;
+      font-family: "DM Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.75;
+      resize: none;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+      &:focus {
+        border-color: rgba(109, 92, 231, 0.52);
+        box-shadow: 0 0 0 3px rgba(109, 92, 231, 0.1),
+                    inset 0 0 40px rgba(109, 92, 231, 0.03);
+      }
+
+      &::placeholder {
+        color: $text-hint;
+        font-style: italic;
+        font-size: 12.5px;
+      }
+    }
+  }
+
+  // ── Right panel ────────────────────────────────────────
+  .right {
+    min-height: 0;
+    background: rgba(255, 255, 255, 0.028);
+    border: 1px solid $border;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    backdrop-filter: blur(10px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 10%; width: 80%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.5), transparent);
+      border-radius: 100px;
+    }
+
+    &:hover {
+      border-color: $border-hover;
+      box-shadow: 0 0 50px rgba(109, 92, 231, 0.07);
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 10px;
+        font-weight: 700;
+        color: $text-muted;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        &[for="resume"]::before          { content: "📄"; font-size: 13px; }
+        &[for="selfDescription"]::before  { content: "🙋"; font-size: 13px; }
+      }
+
+      p {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 500;
+        color: $text-muted;
+        font-family: "DM Sans", sans-serif;
+
+        .highlight {
+          font-size: 9.5px;
+          font-weight: 700;
+          color: rgba(109, 92, 231, 0.7);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          padding: 2px 9px;
+          border: 1px solid rgba(109, 92, 231, 0.25);
+          border-radius: 100px;
+          font-style: normal;
+        }
+      }
+
+      input[type="file"] {
+        width: 100%;
+        padding: 18px 14px;
+        background: rgba(109, 92, 231, 0.04);
+        border: 1.5px dashed rgba(109, 92, 231, 0.28);
+        border-radius: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        font-family: "DM Sans", sans-serif;
+        font-size: 12.5px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+
+        &:hover {
+          border-color: rgba(109, 92, 231, 0.6);
+          background: rgba(109, 92, 231, 0.09);
+          transform: translateY(-1px);
+        }
+
+        &::file-selector-button {
+          background: linear-gradient(135deg, $purple, $pink);
+          border: none;
+          border-radius: 8px;
+          color: #fff;
+          font-family: "DM Sans", sans-serif;
+          font-size: 11.5px;
+          font-weight: 600;
+          padding: 7px 14px;
+          margin-right: 12px;
+          cursor: pointer;
+          transition: opacity 0.2s ease, transform 0.15s ease;
+
+          &:hover { opacity: 0.88; transform: scale(1.02); }
+        }
+      }
+
+      textarea#selfDescription {
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.38);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 12px;
+        padding: 12px 14px;
+        color: $text;
+        font-family: "DM Sans", sans-serif;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.68;
+        resize: none;
+        outline: none;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+        &:focus {
+          border-color: rgba(109, 92, 231, 0.52);
+          box-shadow: 0 0 0 3px rgba(109, 92, 231, 0.1),
+                      inset 0 0 30px rgba(109, 92, 231, 0.03);
+        }
+
+        &::placeholder {
+          color: $text-hint;
+          font-style: italic;
+          font-size: 12px;
+        }
+      }
+
+      &:last-of-type {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .button.primary-button {
+      flex-shrink: 0;
+      width: 100%;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, $purple 0%, $pink 100%);
+      color: #fff;
+      font-family: "DM Sans", sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: opacity 0.2s ease, transform 0.15s ease, box-shadow 0.25s ease;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0; left: -100%;
+        width: 55%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+        animation: shimmer 3s infinite;
+        pointer-events: none;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+        pointer-events: none;
+      }
+
+      &:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+        box-shadow: 0 14px 44px rgba(109, 92, 231, 0.45),
+                    0 0 0 1px rgba(109, 92, 231, 0.3);
+      }
+
+      &:active { transform: translateY(0); box-shadow: none; opacity: 1; }
+    }
+  }
+}
+
+@keyframes shimmer {
+  0%        { left: -100%; }
+  50%, 100% { left: 150%; }
+}
+
+// ── Responsive ─────────────────────────────────────────────
+@media (max-width: 900px) {
+  .page-wrapper { height: auto; overflow: auto; }
+
+  .hero { padding: 20px 16px 14px; }
+
+  .home {
+    grid-template-columns: 1fr;
+    padding: 0 16px 28px;
+
+    .left {
+      &::after { content: none; }
+      textarea#jobDescription { min-height: 200px; margin-top: 0; }
+    }
+  }
+}
+*/
+
+// ── Home Topbar ─────────────────────────────────────────────
+.home-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-bottom: 1px solid $border;
+  background: rgba(8, 8, 16, 0.88);
+  backdrop-filter: blur(14px);
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+
+  &__left  { display: flex; align-items: center; }
+  &__right { display: flex; align-items: center; gap: 14px; }
+  &__user  { display: flex; align-items: center; gap: 9px; }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Syne", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.88);
+    letter-spacing: -0.3px;
+  }
+  &__logo-icon { font-size: 18px; }
+
+  &__avatar {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $purple, $pink);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+
+  &__name {
+    font-size: 13px; font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    max-width: 140px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+
+  &__logout {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    color: rgba(255,255,255,0.42);
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px; font-weight: 500;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    svg { flex-shrink: 0; }
+    &:hover {
+      background: rgba(255,80,80,0.08);
+      border-color: rgba(255,80,80,0.22);
+      color: rgba(255,120,120,0.9);
+    }
+  }
+}
+
+// ── Button spinner ──────────────────────────────────────────
+.btn-spinner {
+  display: inline-block;
+  width: 12px; height: 12px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: btn-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes btn-spin { to { transform: rotate(360deg); } }
+
+// ── Form error ──────────────────────────────────────────────
+.form-error {
+  font-size: 12px;
+  color: rgba(255,120,120,0.88);
+  background: rgba(255,80,80,0.06);
+  border: 1px solid rgba(255,80,80,0.15);
+  border-radius: 8px;
+  padding: 9px 13px;
+  line-height: 1.5;
+}
+
+// ── Reports section ─────────────────────────────────────────
+.reports-section {
+  position: relative; z-index: 1;
+  padding: 0 24px 28px;
+  display: flex; flex-direction: column; gap: 14px;
+  flex-shrink: 0;
+
+  &__header {
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 12px;
+  }
+}
+
+.reports-count {
+  font-size: 11px; font-weight: 600;
+  color: rgba(167,139,250,0.7);
+  background: rgba(109,92,231,0.1);
+  border: 1px solid rgba(109,92,231,0.2);
+  border-radius: 100px;
+  padding: 3px 12px;
+}
+
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+// ── Report card ─────────────────────────────────────────────
+.report-card {
+  background: $panel;
+  border: 1px solid $border;
+  border-radius: $radius;
+  padding: 16px;
+  cursor: pointer;
+  position: relative;
+  display: flex; flex-direction: column; gap: 6px;
+  transition: border-color 0.25s, transform 0.18s, box-shadow 0.25s;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(109,92,231,0.04), transparent 60%);
+    pointer-events: none;
+  }
+
+  &:hover {
+    border-color: $border-hover;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(109,92,231,0.12);
+    .report-card__arrow { opacity: 1; transform: translateX(0); }
+  }
+
+  &__top {
+    display: flex; align-items: center;
+    justify-content: space-between; margin-bottom: 4px;
+  }
+  &__icon  { font-size: 20px; line-height: 1; }
+
+  &__score {
+    font-size: 10px; font-weight: 700;
+    padding: 3px 9px; border-radius: 100px; border: 1px solid;
+    &.score--high { color: #3fb950; background: rgba(63,185,80,.1);  border-color: rgba(63,185,80,.25); }
+    &.score--mid  { color: #f5a623; background: rgba(245,166,35,.1); border-color: rgba(245,166,35,.25); }
+    &.score--low  { color: #ff4d4d; background: rgba(255,77,77,.1);  border-color: rgba(255,77,77,.25); }
+  }
+
+  &__title {
+    font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,0.85); line-height: 1.4; margin: 0;
+  }
+  &__date {
+    font-size: 11px; color: rgba(255,255,255,0.3); margin: 0;
+  }
+  &__arrow {
+    margin-top: auto; padding-top: 8px;
+    color: rgba(167,139,250,0.6);
+    opacity: 0; transform: translateX(-4px);
+    transition: opacity 0.2s, transform 0.2s;
+    display: flex; align-items: center;
+  }
+}
+
+// ── Empty state ─────────────────────────────────────────────
+.reports-empty {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+  padding: 28px 20px;
+  background: $panel;
+  border: 1px dashed rgba(255,255,255,0.07);
+  border-radius: $radius;
+  text-align: center;
+
+  &__icon { font-size: 28px; opacity: 0.5; }
+  p {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.6; max-width: 300px;
+  }
+}
+
+// ── Responsive extras ───────────────────────────────────────
+@media (max-width: 640px) {
+  .home-topbar    { padding: 10px 16px; &__name { display: none; } }
+  .reports-section { padding: 0 16px 24px; }
+  .reports-grid   { grid-template-columns: 1fr 1fr; }
+}
