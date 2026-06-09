@@ -7,7 +7,7 @@ export function useVoiceQA(resumeText) {
   const [response, setResponse] = useState('');
 
   const askAI = async (question) => {
-    const res = await fetch(`http://localhost:3000/api/interview/voice-qa`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/interview/voice-qa`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',

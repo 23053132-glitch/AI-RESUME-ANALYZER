@@ -10,7 +10,7 @@ export default function VoiceQA() {
   const [fetchError, setFetchError] = useState(null)
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/interview/report/${interviewId}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/interview/report/${interviewId}`, {
       credentials: 'include'
     })
       .then(r => r.json())
