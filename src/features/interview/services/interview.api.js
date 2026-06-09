@@ -1,7 +1,9 @@
 import axios from "axios";
+import API_URL from "../config.js";  // adjust path if needed
 
 const api = axios.create({
-    baseURL: "http://localhost:3000",
+   // baseURL: "http://localhost:3000",
+   baseURL: API_URL,
     withCredentials: true,
 })
 
@@ -21,6 +23,7 @@ export const generateInterviewReport = async ({ jobDescription, selfDescription,
     return response.data
 
 }
+
 
 
 /**
